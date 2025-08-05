@@ -4,20 +4,14 @@ import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
+import { LoginForm } from './LoginForm'
 
 export function Login() {
 
-  const navigation =
-    useNavigation<StackNavigationProp<PublicStackParamsList>>()
-
   return (
     <DimissKeyboardView>
-      <View>
-        <Text>Bem vindo a tela de login!</Text>
-        <TextInput className='bg-gray-500 w-full' />
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text>Registrar</Text>
-        </TouchableOpacity>
+      <View className='flex-1 w-[82%] self-center'>
+        <LoginForm/>
       </View>
     </DimissKeyboardView>
 
