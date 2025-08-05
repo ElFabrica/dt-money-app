@@ -1,20 +1,27 @@
+import { DimissKeyboardView } from '@/components/DimissKeyboardView/index'
 import { PublicStackParamsList } from '@/routes/PublicRoutes'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { Text, TouchableOpacity, View } from 'react-native'
+import { TextInput } from 'react-native-gesture-handler'
 
 export function Login() {
 
-  const navigation = 
-  useNavigation<StackNavigationProp<PublicStackParamsList>>()
-  
+  const navigation =
+    useNavigation<StackNavigationProp<PublicStackParamsList>>()
+
   return (
-    <View className='flex-1 items-center justify-center'>
+    <DimissKeyboardView>
+      <View>
         <Text>Bem vindo a tela de login!</Text>
-        <TouchableOpacity onPress={()=> navigation.navigate("Register")}>
+        <TextInput className='bg-gray-500 w-full' />
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
           <Text>Registrar</Text>
         </TouchableOpacity>
-    </View>
+      </View>
+    </DimissKeyboardView>
+
+
   )
 }
 
