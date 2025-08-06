@@ -1,9 +1,5 @@
 import { DimissKeyboardView } from '@/components/DimissKeyboardView/index'
-import { PublicStackParamsList } from '@/routes/PublicRoutes'
-import { useNavigation } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { Text, TouchableOpacity, View } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler'
+import { View } from 'react-native'
 import { LoginForm } from './LoginForm'
 
 export function Login() {

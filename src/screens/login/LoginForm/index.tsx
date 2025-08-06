@@ -1,3 +1,4 @@
+import { AppInput } from "@/components/AppInput"
 import { useForm } from "react-hook-form"
 import { Text } from "react-native"
 
@@ -16,9 +17,22 @@ export const LoginForm = () => {
 
     return (
         <>
-            <Text className="text-white">
-                Login Form
-            </Text>
+            <AppInput
+            control={control}
+            name="email"
+            label="EMAIL"
+            placeholder="email@example.br"
+            leftIconName="mail-outline"
+            />
+
+                        <AppInput
+            control={control}
+            name="password"
+            label="SENHA"
+            placeholder="Sua senha"
+            leftIconName="lock-outline"
+            secureTextEntry
+            />
         </>
     )
 }
