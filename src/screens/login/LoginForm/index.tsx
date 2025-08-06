@@ -1,4 +1,5 @@
 import { AppInput } from "@/components/AppInput"
+import { AppButton } from "@/routes/AppButton"
 import { useForm } from "react-hook-form"
 import { Text } from "react-native"
 
@@ -33,6 +34,7 @@ export const LoginForm = () => {
             leftIconName="lock-outline"
             secureTextEntry
             />
+            <AppButton iconName="arrow-forward" mode="outline">Login</AppButton>
         </>
     )
 }
