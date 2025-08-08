@@ -1,11 +1,18 @@
 
+import { DimissKeyboardView } from '@/components/DimissKeyboardView'
 import { Text, View } from 'react-native'
+import { RegisterForm } from './RegisterForm'
+import { AuthHeader } from '@/components/AuthHeader'
 
 export function Register() {
   return (
-    <View className='flex-1 items-center justify-center'>
-        <Text>Bem vindo a tela de login</Text>
-    </View>
+    <DimissKeyboardView>
+      <View className='flex-1 w-[82%] self-center '>
+        <AuthHeader/>
+        <RegisterForm/>
+
+      </View>
+    </DimissKeyboardView>
   )
 }
 

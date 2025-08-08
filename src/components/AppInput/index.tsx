@@ -23,7 +23,9 @@ export const AppInput = <T extends FieldValues>({
 }: AppInputParams<T>) => {
     return (
         <Controller
-            control={control} name={name} render={({ field: { onChange, value } }) => {
+            control={control} name={name} render={({ field: { onChange, value }, fieldState: { 
+            error } }) => {
+                    console.log(error)
                 const [isFocused, setIsFocused] = useState(false)
                 const inputRef = useRef<TextInput>(null)
                 const [showText, setShowText] = useState(secureTextEntry)
