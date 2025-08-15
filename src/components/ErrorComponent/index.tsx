@@ -1,7 +1,7 @@
 import { Text, View } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { colors } from "@/shared/colors"
-import { Children, FC, PropsWithChildren } from "react"
+import { FC, PropsWithChildren } from "react"
 
 export const ErrorMessage: FC <PropsWithChildren > = ({ children }) => {
      return (

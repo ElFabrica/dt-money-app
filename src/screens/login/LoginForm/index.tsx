@@ -8,7 +8,8 @@ import { PublicStackParamsList } from "@/routes/PublicRoutes"
 import { NavigationProp, useNavigation } from "@react-navigation/native"
 
 import { yupResolver } from "@hookform/resolvers/yup"
-import { schema } from "./schema"
+import { Schema } from '@/screens/login/LoginForm/schema'
+
 
 export interface FormLoginParams {
     email: string,
@@ -26,7 +27,7 @@ export const LoginForm = () => {
             email: "",
             password: ""
         },
-        resolver: yupResolver(schema)
+        resolver: yupResolver(Schema)
     })
 
     const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
