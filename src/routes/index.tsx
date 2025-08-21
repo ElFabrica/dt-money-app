@@ -4,19 +4,19 @@ import { PrivateRoutes } from "./PrivateRoutes"
 import { useCallback, useState } from "react"
 
 
- const NavigationRoutes = () => {
+const NavigationRoutes = () => {
 
-        const [ user, setUser] = useState(undefined)
-        const Routes = useCallback(() => {
-            if(!user){
-                return<PublicRoutes/>
-            }else{
-                return<PrivateRoutes/>
-            }
-        }, [])
-    return(
+    const [user, setUser] = useState(undefined)
+    const Routes = useCallback(() => {
+        if (!user) {
+            return <PublicRoutes />
+        } else {
+            return <PrivateRoutes />
+        }
+    }, [])
+    return (
         <NavigationContainer>
-            <Routes/>
+            <Routes />
         </NavigationContainer>
 
     )

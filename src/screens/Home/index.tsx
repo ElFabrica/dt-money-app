@@ -1,10 +1,9 @@
 import { View } from "react-native"
 
-export const home = () => {
+export const Home = () => {
     return(
         <View>
-            
-        
+
         </View>
     )
 }

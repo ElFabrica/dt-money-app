@@ -1,4 +1,4 @@
-import {createStackNavigator} from "@react-navigation/stack"
+import { createStackNavigator } from "@react-navigation/stack"
 import { Login } from "@/screens/login"
 import { Register } from "@/screens/Register"
 export type PublicStackParamsList = {
@@ -8,17 +8,17 @@ export type PublicStackParamsList = {
 
 export const PublicRoutes = () => {
 
-    
+
     const PublicStack = createStackNavigator<PublicStackParamsList>()
     return (
         <PublicStack.Navigator
-        screenOptions= {{
-        headerShown: false,
-        }
-}
+            screenOptions={{
+                headerShown: false,
+            }
+            }
         >
-    <PublicStack.Screen name="Login" component = { Login } />
-        <PublicStack.Screen name="Register" component = { Register } />
-            </PublicStack.Navigator>
+            <PublicStack.Screen name="Login" component={Login} />
+            <PublicStack.Screen name="Register" component={Register} />
+        </PublicStack.Navigator>
     )
 }

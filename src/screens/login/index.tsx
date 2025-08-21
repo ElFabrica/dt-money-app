@@ -6,7 +6,6 @@ import { useAuthContext } from '@/context/auth.context'
 
 export function Login() {
 
-  const { user } = useAuthContext()
 
 
   return (

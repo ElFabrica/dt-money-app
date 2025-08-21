@@ -10,9 +10,10 @@ type AuthContextType ={
     handleLogout: () => void
 }
 
-export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
+export const AuthContext = createContext<AuthContextType | null>(
+    {} as AuthContextType)
 
- export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
+ export const AuthContextProvider: FC<PropsWithChildren > = ({ children }) => {
     const [user, setUser] = useState (null)
     const [token, serToken] = useState<string | null>(null)
     
@@ -23,19 +24,23 @@ export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
     const handleRegister = async (formData: FormRegisterParams) => {
 
     }
-    const handleLogout =() =>{
+    const handleLogout = () =>{
 
     }
 
     return(
         <AuthContext.Provider
         value={{
-            handleAuthenticate, handleRegister, handleLogout, token, user
+            handleAuthenticate, 
+            handleRegister, 
+            handleLogout, 
+            token, 
+            user,
         }}
         >
             {children}
         </AuthContext.Provider>
-    )
+    );
  }
 
  export const useAuthContext = () => {

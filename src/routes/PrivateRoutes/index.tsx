@@ -1,17 +1,14 @@
-import { home } from "@/screens/Home"
+import { Home } from "@/screens/Home"
 import { createStackNavigator } from "@react-navigation/stack"
 
 export type PrivateStackParamsList = {
     Home: undefined,
-
 }
-
-
-export const PrivateRoutes =() =>{
+export const PrivateRoutes = () => {
     const PrivateStack = createStackNavigator<PrivateStackParamsList>()
-    return(
+    return (
         <PrivateStack.Navigator>
-            <PrivateStack.Screen name="Home" component={home}/>
+            <PrivateStack.Screen name="Home" component={Home} />
         </PrivateStack.Navigator>
 
     )
