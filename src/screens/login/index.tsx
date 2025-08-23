@@ -5,9 +5,6 @@ import { AuthHeader } from '@/components/AuthHeader'
 import { useAuthContext } from '@/context/auth.context'
 
 export function Login() {
-
-
-
   return (
     <DimissKeyboardView>
       <View className='flex-1 w-[82%] self-center'>

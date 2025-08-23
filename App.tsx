@@ -6,8 +6,9 @@ import { AuthContextProvider } from "@/context/auth.context";
 
 export default function App() {
   return (
+    
     <AuthContextProvider>
-    <NavigationRoutes/>
+        <NavigationRoutes />
     </AuthContextProvider>
   );
 }

@@ -1,6 +1,6 @@
 import { FormLoginParams } from "@/screens/login/LoginForm"
 import { FormRegisterParams } from "@/screens/Register/RegisterForm"
-import { createContext, FC, PropsWithChildren, useContext, useState } from "react"
+import React, { createContext, FC, PropsWithChildren, useContext, useState } from "react"
 
 type AuthContextType = {
     user: null
@@ -13,9 +13,9 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType>(
     {} as AuthContextType)
 
-export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
+export function AuthContextProvider  ({ children }: {children: React.ReactNode}) {
     const [user, setUser] = useState(null)
-    const [token, serToken] = useState<string | null>(null)
+    const [token, setToken] = useState<string | null>(null)
 
     const handleAuthenticate = async ({ email, password }: FormLoginParams) => {
 
@@ -45,6 +45,8 @@ export const AuthContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 export const useAuthContext = () => {
     const context = useContext(AuthContext)
-
+    if (!context) {
+        throw new Error("useAuthContext deve ser usado dentro de AuthContextProvider")
+    }
     return context
 }

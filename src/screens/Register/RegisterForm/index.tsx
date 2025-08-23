@@ -13,13 +13,14 @@ export interface FormRegisterParams {
     password: string
     confirmPasword: string
 }
-    const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
 
-    const onSubmit = async () => {
 
-    }
+const onSubmit = async () => {
+
+}
 
 export const RegisterForm = () => {
+    const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
     const {
         control,
         handleSubmit,
@@ -27,13 +28,13 @@ export const RegisterForm = () => {
             isSubmitted
         }
     } = useForm<FormRegisterParams>({
-        defaultValues:{
-            confirmPasword:"",
+        defaultValues: {
+            confirmPasword: "",
             email: "",
             name: "",
             password: ""
-                },
-                resolver: yupResolver(schema)
+        },
+        resolver: yupResolver(schema)
     })
     return <>
         <AppInput
@@ -69,7 +70,7 @@ export const RegisterForm = () => {
         />
 
         <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
-            <AppButton  onPress={handleSubmit(onSubmit)} iconName="arrow-forward">Cadastrar</AppButton>
+            <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">Cadastrar</AppButton>
             <View>
                 <Text className="mb-6 text-gray-300 text-base">Já possui uma conta?</Text>
                 <AppButton onPress={() => { navigation.navigate("Login") }} iconName="arrow-forward" mode="outline">Acessar</AppButton>
