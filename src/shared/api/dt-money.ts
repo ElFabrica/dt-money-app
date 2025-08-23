@@ -5,8 +5,8 @@ import { string } from "yup"
 
 const baseURL = Platform.select({
     ios: "https://localhost:3001",
-    android: "http://10.0.2.2.:3001"
+    android: "http://10.0.2.2:3001"
 })
-export const dtMoney = axios.create({
+export const dtMoneyApi = axios.create({
     baseURL
 })

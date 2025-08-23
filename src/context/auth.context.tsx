@@ -1,9 +1,10 @@
 import { FormLoginParams } from "@/screens/login/LoginForm"
 import { FormRegisterParams } from "@/screens/Register/RegisterForm"
-import React, { createContext, FC, PropsWithChildren, useContext, useState } from "react"
-
+import React, { createContext, useContext, useState } from "react"
+import * as authService from "@/shared/service/dt-money/auth.service"
+import { IUser } from "@/shared/interface/user-interface"
 type AuthContextType = {
-    user: null
+    user: IUser | null
     token: string | null
     handleAuthenticate: (params: FormLoginParams) => Promise<void>
     handleRegister: (params: FormRegisterParams) => Promise<void>
@@ -13,12 +14,15 @@ type AuthContextType = {
 export const AuthContext = createContext<AuthContextType>(
     {} as AuthContextType)
 
-export function AuthContextProvider  ({ children }: {children: React.ReactNode}) {
-    const [user, setUser] = useState(null)
+export function AuthContextProvider({ children }: { children: React.ReactNode }) {
+    const [user, setUser] = useState<IUser | null>(null)
     const [token, setToken] = useState<string | null>(null)
 
-    const handleAuthenticate = async ({ email, password }: FormLoginParams) => {
-
+    const handleAuthenticate = async ( userData : FormLoginParams) => {
+        const { token, user } = await authService.authenticate(userData)
+        setUser(user)
+        setToken(token)
+        console.log(token, user)
     }
 
     const handleRegister = async (formData: FormRegisterParams) => {

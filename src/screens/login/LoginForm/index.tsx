@@ -9,6 +9,8 @@ import { NavigationProp, useNavigation } from "@react-navigation/native"
 
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Schema } from '@/screens/login/LoginForm/schema'
+import { useAuthContext } from "@/context/auth.context"
+import { AxiosError } from "axios"
 
 
 export interface FormLoginParams {
@@ -29,10 +31,21 @@ export const LoginForm = () => {
         },
         resolver: yupResolver(Schema)
     })
-
+    const { handleAuthenticate } = useAuthContext()
     const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
 
-    const onSubmint = async () => {}
+    const onSubmint = async (userData: FormLoginParams) => {
+        try {
+            await handleAuthenticate(userData)
+            console.log(userData)
+        } catch (error) {
+            if(error instanceof AxiosError){
+                console.log(error.response?.data)
+            }
+            console.log(error)
+        }
+        
+    }
     return (
         <>
             <AppInput
