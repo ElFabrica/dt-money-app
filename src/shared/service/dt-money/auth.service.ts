@@ -7,3 +7,8 @@ export async function authenticate (userData: FormLoginParams): Promise<IAuthent
 
     return data
 }
+
+export async function registerUser(userData: FormLoginParams): Promise<IAuthenticateRespose>{
+    const { data } = await dtMoneyApi.post<IAuthenticateRespose>("/auth/register", userData)
+    return data
+}

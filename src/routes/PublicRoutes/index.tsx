@@ -15,8 +15,7 @@ export const PublicRoutes = () => {
             screenOptions={{
                 headerShown: false,
             }
-            }
-        >
+            }>
             <PublicStack.Screen name="Login" component={Login} />
             <PublicStack.Screen name="Register" component={Register} />
         </PublicStack.Navigator>

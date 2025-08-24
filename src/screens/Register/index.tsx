@@ -1,4 +1,3 @@
-
 import { DimissKeyboardView } from '@/components/DimissKeyboardView'
 import { Text, View } from 'react-native'
 import { RegisterForm } from './RegisterForm'
@@ -10,7 +9,6 @@ export function Register() {
       <View className='flex-1 w-[82%] self-center '>
         <AuthHeader/>
         <RegisterForm/>
-
       </View>
     </DimissKeyboardView>
   )
