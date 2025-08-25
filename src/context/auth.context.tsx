@@ -36,8 +36,10 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
         setUser(user)
         setToken(token)
     }
-    const handleLogout = () => {
-
+    const handleLogout = async () => {
+         await AsyncStorage.clear()
+         setToken(null)
+         setUser(null)
     }
     async function restoreUserSession() {
         const userData = await AsyncStorage.getItem("dt-money-user")
