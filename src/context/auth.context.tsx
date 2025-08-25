@@ -3,12 +3,16 @@ import { FormRegisterParams } from "@/screens/Register/RegisterForm"
 import React, { createContext, useContext, useState } from "react"
 import * as authService from "@/shared/service/dt-money/auth.service"
 import { IUser } from "@/shared/interface/user-interface"
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { IAuthenticateRespose } from "@/shared/interface/https/authenticate.response"
+
 type AuthContextType = {
     user: IUser | null
     token: string | null
     handleAuthenticate: (params: FormLoginParams) => Promise<void>
     handleRegister: (params: FormRegisterParams) => Promise<void>
     handleLogout: () => void
+    restoreUserSession: () => Promise<String|null>
 }
 
 export const AuthContext = createContext<AuthContextType>(
@@ -20,6 +24,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
 
     const handleAuthenticate = async ( userData : FormLoginParams) => {
         const { token, user } = await authService.authenticate(userData)
+        await AsyncStorage.setItem("dt-money-user", JSON.stringify({user, token}))
         setUser(user)
         setToken(token)
         console.log(token, user)
@@ -27,12 +32,23 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
 
     const handleRegister = async (formData: FormRegisterParams) => {
         const { token, user} = await authService.registerUser(formData)
+        await AsyncStorage.setItem("dt-money-user", JSON.stringify({user, token}))
         setUser(user)
         setToken(token)
     }
     const handleLogout = () => {
 
     }
+    async function restoreUserSession() {
+        const userData = await AsyncStorage.getItem("dt-money-user")
+    
+    if(userData) {
+        const {token, user} = JSON.parse(userData) as IAuthenticateRespose
+        setUser(user)
+        setToken(token)
+    }
+    return userData 
+}
 
     return (
         <AuthContext.Provider
@@ -40,6 +56,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
                 handleAuthenticate,
                 handleRegister,
                 handleLogout,
+                restoreUserSession,
                 token,
                 user,
             }}

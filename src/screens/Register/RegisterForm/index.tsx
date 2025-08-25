@@ -29,7 +29,7 @@ const onSubmit = async (userData: FormRegisterParams) => {
             console.log(error.response?.data)
         }
     }
-}   
+}
 
 
 const {
