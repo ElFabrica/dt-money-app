@@ -11,6 +11,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { Schema } from '@/screens/login/LoginForm/schema'
 import { useAuthContext } from "@/context/auth.context"
 import { AxiosError } from "axios"
+import { AppError } from "@/shared/helpers/AppError"
 
 
 export interface FormLoginParams {
@@ -39,6 +40,7 @@ export const LoginForm = () => {
             await handleAuthenticate(userData)
             console.log(userData)
         } catch (error) {
+            console.log(error instanceof AppError)
             if(error instanceof AxiosError){
                 console.log(error.response?.data)
             }

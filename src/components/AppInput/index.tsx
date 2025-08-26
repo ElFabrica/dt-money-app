@@ -36,7 +36,6 @@ export const AppInput = <T extends FieldValues>({
                         setIsFocused(inputRef.current?.isFocused())
                     }
                 }
-
                 return (
                     <View className="w-full mt-4">
                         {label &&
