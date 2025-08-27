@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { ActivityIndicator, Text, View } from "react-native"
 import { useForm } from "react-hook-form"
 import { AppInput } from "@/components/AppInput"
 import { AppButton } from "@/routes/AppButton"
@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { schema } from "./schema"
 import { useAuthContext } from "@/context/auth.context"
 import { AxiosError } from "axios"
+import { useErrorHandle } from "@/shared/hooks/useErrorHandle"
+import { colors } from "@/shared/colors"
 
 export interface FormRegisterParams {
     email: string,
@@ -17,27 +19,23 @@ export interface FormRegisterParams {
 }
 
 export const RegisterForm = () => {
-const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
-const { handleRegister } = useAuthContext()
+    const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
+    const { handleRegister } = useAuthContext()
+    const { handleError } = useErrorHandle()
 
-
-const onSubmit = async (userData: FormRegisterParams) => {
-    try {
-        await handleRegister(userData)
-    } catch (error) {
-        if(error instanceof AxiosError){
-            console.log(error.response?.data)
+    const onSubmit = async (userData: FormRegisterParams) => {
+        try {
+            await handleRegister(userData)
+        } catch (error) {
+               handleError(error, "falha ao cadastrar usuário")
         }
     }
-}
 
 
-const {
+    const {
         control,
         handleSubmit,
-        formState: {
-            isSubmitted
-        }
+        formState: { isSubmitting }
     } = useForm<FormRegisterParams>({
         defaultValues: {
             confirmPasword: "",
@@ -81,7 +79,12 @@ const {
         />
 
         <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
-            <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">Cadastrar</AppButton>
+            <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">
+                {
+                isSubmitting? 
+                <ActivityIndicator color={colors.white}/> : "Cadastrar"
+                }
+                </AppButton>
             <View>
                 <Text className="mb-6 text-gray-300 text-base">Já possui uma conta?</Text>
                 <AppButton onPress={() => { navigation.navigate("Login") }} iconName="arrow-forward" mode="outline">Acessar</AppButton>

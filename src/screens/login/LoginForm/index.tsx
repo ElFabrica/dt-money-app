@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { ActivityIndicator, Text, View } from "react-native"
 import { useForm } from "react-hook-form"
 
 import { AppButton } from "@/routes/AppButton"
@@ -13,6 +13,8 @@ import { useAuthContext } from "@/context/auth.context"
 import { AxiosError } from "axios"
 import { AppError } from "@/shared/helpers/AppError"
 import { useSnacbarContext } from "@/context/snackbar.context"
+import { useErrorHandle } from "@/shared/hooks/useErrorHandle"
+import { colors } from "@/shared/colors"
 
 
 export interface FormLoginParams {
@@ -25,7 +27,7 @@ export const LoginForm = () => {
     const {
         control,
         handleSubmit,
-        formState: { isSubmitted }
+        formState: { isSubmitting }
     } = useForm<FormLoginParams>({
         defaultValues: {
             email: "",
@@ -34,7 +36,7 @@ export const LoginForm = () => {
         resolver: yupResolver(Schema)
     })
     const { handleAuthenticate } = useAuthContext()
-    const { notify  } = useSnacbarContext()
+    const { handleError } = useErrorHandle()
     const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
 
     const onSubmint = async (userData: FormLoginParams) => {
@@ -42,16 +44,10 @@ export const LoginForm = () => {
             await handleAuthenticate(userData)
             console.log(userData)
         } catch (error) {
-            if(error instanceof AxiosError){
-               notify({
-                message: error.message,
-                messageType: "ERROR"
-                 
-               })
-            }
-            
+            handleError(error, "Falha ao logar")
+
         }
-        
+
     }
     return (
         <>
@@ -72,7 +68,12 @@ export const LoginForm = () => {
                 secureTextEntry
             />
             <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
-                <AppButton onPress={ handleSubmit(onSubmint)} iconName="arrow-forward">Login</AppButton>
+                <AppButton onPress={handleSubmit(onSubmint)} iconName="arrow-forward">
+                    {
+                    isSubmitting ?
+                    <ActivityIndicator color={colors.white} /> : "Cadastrar"
+                    }
+                </AppButton>
                 <View>
                     <Text className="mb-6 text-gray-300 text-base">Ainda não possui uma conta?</Text>
                     <AppButton onPress={() => { navigation.navigate("Register") }} iconName="arrow-forward" mode="outline">Cadastrar</AppButton>
