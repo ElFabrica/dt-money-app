@@ -1,6 +1,7 @@
-import { createContext, FC, PropsWithChildren, useState } from "react";
+import { createContext, FC, PropsWithChildren, useContext, useState } from "react";
+import { AuthContext } from "./auth.context";
 
-export type SnackbarMessageType = "ERROR"| "SUCESS"
+export type SnackbarMessageType = "ERROR"| "SUCCESS"
 
 interface NotifyMessageParams {
     message: string,
@@ -9,13 +10,14 @@ interface NotifyMessageParams {
 
 export type SnackBarContextType = {
     message: string | null
-    type: SnackbarMessageType
+    type: SnackbarMessageType | null
     notify: (parame: NotifyMessageParams) => void
 }
 
-const SnackbarContext = createContext({} as SnackBarContextType)
 
+    const SnackbarContext = createContext({} as SnackBarContextType)
 export const SnackBarContextProvider: FC<PropsWithChildren> = ({children }) => {
+
 
     const [message, setMessage] = useState<string|null>(null)
     const [type, setType] = useState <SnackbarMessageType | null>(null)
@@ -37,4 +39,9 @@ return(
 {children}
 </SnackbarContext.Provider>
 )
+}
+
+export const useSnacbarContext = () => {
+    const context = useContext(SnackbarContext)
+    return context;
 }

@@ -12,6 +12,7 @@ import { Schema } from '@/screens/login/LoginForm/schema'
 import { useAuthContext } from "@/context/auth.context"
 import { AxiosError } from "axios"
 import { AppError } from "@/shared/helpers/AppError"
+import { useSnacbarContext } from "@/context/snackbar.context"
 
 
 export interface FormLoginParams {
@@ -33,6 +34,7 @@ export const LoginForm = () => {
         resolver: yupResolver(Schema)
     })
     const { handleAuthenticate } = useAuthContext()
+    const { notify  } = useSnacbarContext()
     const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
 
     const onSubmint = async (userData: FormLoginParams) => {
@@ -40,11 +42,14 @@ export const LoginForm = () => {
             await handleAuthenticate(userData)
             console.log(userData)
         } catch (error) {
-            console.log(error instanceof AppError)
             if(error instanceof AxiosError){
-                console.log(error.response?.data)
+               notify({
+                message: error.message,
+                messageType: "ERROR"
+                 
+               })
             }
-            console.log(error)
+            
         }
         
     }
