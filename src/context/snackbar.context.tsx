@@ -13,8 +13,6 @@ export type SnackBarContextType = {
     type: SnackbarMessageType | null
     notify: (parame: NotifyMessageParams) => void
 }
-
-
     const SnackbarContext = createContext({} as SnackBarContextType)
 export const SnackBarContextProvider: FC<PropsWithChildren> = ({children }) => {
 
