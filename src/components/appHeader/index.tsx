@@ -3,6 +3,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { colors } from "@/shared/colors";
 import { useAuthContext } from "@/context/auth.context";
 import { useBottomSheetContext } from "@/context/bottomsheet.context";
+import { NewTransaction } from "../NewTransaction";
 
 export function AppHeader() {
 
@@ -23,7 +24,7 @@ export function AppHeader() {
                 </TouchableOpacity>
             </View>
             <TouchableOpacity className="bg-accent-brand h-w[130px] items-center justify-center rounded-xl h-[50px]"
-            onPress={()=>{openBottomSheet( <Text>Formulário da nova transação</Text>, 0  )}}
+            onPress={()=>{openBottomSheet( <NewTransaction/>, 0  )}}
             >
                 <Text className="text-white font-bold text-sm">
                     Nova transação

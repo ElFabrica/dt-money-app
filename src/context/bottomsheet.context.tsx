@@ -49,7 +49,6 @@ export const BottomSheetProvider: React.FC<PropsWithChildren> = ({ children }) =
                 isOpen && (
                     <TouchableWithoutFeedback>
                         <View className="absolute insert-0 bg-black/70 z-1">
-
                         </View>
                     </TouchableWithoutFeedback>
                 )}
