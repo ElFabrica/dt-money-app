@@ -1,4 +1,4 @@
-import { AppHeader } from "@/components/appHeader"
+import { AppHeader } from "@/components/AppHeader"
 import { useAuthContext } from "@/context/auth.context"
 import { Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
