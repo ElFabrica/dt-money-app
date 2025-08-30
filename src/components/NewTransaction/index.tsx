@@ -26,7 +26,9 @@ export function NewTransaction() {
 
     return(
         <View className="px-8 py-5">
-            <TouchableOpacity className="w-full flex-row items-center justify-between">
+            <TouchableOpacity className="w-full flex-row items-center justify-between"
+          
+            >
                 <Text className="text-white text-xl font-bold">
                     Nova Transação
                 </Text>
@@ -34,6 +36,7 @@ export function NewTransaction() {
                 name="close"
                 color={colors.gray["700"]}
                 size={20}
+                onPress={closeBottomSheet}
                 />
             </TouchableOpacity>
             <View className="flex-1 mt-8 mb-8">
@@ -42,10 +45,12 @@ export function NewTransaction() {
                 placeholderTextColor={colors.gray["700"]}
                 onChangeText={(text) => setTransactionData("description", text) }
                 value={transaction.description}
-                className="text-white text-lg bg-background-primary my-6 rounded-[6] pl-4">
+                className="text-white text-lg bg-background-primary my-2 rounded-[6] pl-4"
+                />
+
                 <CurrencInput
                 value={transaction.value}
-                className="text-white text-lg bg-background-primary my-6 rounded-[6] pl-4"
+                className="text-white text-lg bg-background-primary my-2 rounded-[6] pl-4"
                 prefix="R$ "
                 delimiter="."
                 separator=","
@@ -56,9 +61,8 @@ export function NewTransaction() {
                 <TransactionTypeSelector
                  typeId={transaction.typeId}
                  setTransactionType={(typeId) => setTransactionData("typeId", typeId) }
-                  
-                />
-                </TextInput>
+                  />
+                
             </View>
         </View>
     )

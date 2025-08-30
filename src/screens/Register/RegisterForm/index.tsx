@@ -59,7 +59,7 @@ export const RegisterForm = () => {
             name="email"
             leftIconName="mail-outline"
             label="EMAIL"
-            placeholder="mail@example.com"
+            placeholder="email@example.com"
         />
 
         <AppInput
@@ -68,6 +68,7 @@ export const RegisterForm = () => {
             leftIconName="lock-outline"
             label="SENHA"
             placeholder="Sua senha"
+            secureTextEntry
         />
 
         <AppInput
@@ -76,6 +77,7 @@ export const RegisterForm = () => {
             leftIconName="lock-outline"
             label="SENHA"
             placeholder="Confirme sua senha"
+            secureTextEntry
         />
 
         <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">

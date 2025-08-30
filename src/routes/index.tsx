@@ -2,8 +2,9 @@ import { NavigationContainer } from "@react-navigation/native"
 import { PublicRoutes } from "./PublicRoutes"
 import { PrivateRoutes } from "./PrivateRoutes"
 import { useCallback, useState } from "react"
-import { AuthContextProvider, useAuthContext } from "@/context/auth.context"
+import {  useAuthContext } from "@/context/auth.context"
 import { Loading } from "@/screens/Loading"
+import { SystemBars } from 'react-native-edge-to-edge'
 
 
 
@@ -25,6 +26,7 @@ const NavigationRoutes = () => {
 
     return (
         <NavigationContainer>
+            <SystemBars style={"light"}/>
             <Routes />
         </NavigationContainer>
 

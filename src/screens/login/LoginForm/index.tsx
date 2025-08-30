@@ -71,7 +71,7 @@ export const LoginForm = () => {
                 <AppButton onPress={handleSubmit(onSubmint)} iconName="arrow-forward">
                     {
                     isSubmitting ?
-                    <ActivityIndicator color={colors.white} /> : "Cadastrar"
+                    <ActivityIndicator color={colors.white} /> : "Login"
                     }
                 </AppButton>
                 <View>

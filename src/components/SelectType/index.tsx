@@ -16,7 +16,7 @@ export const TransactionTypeSelector: React.FC<Props> = ({
     
     return(
         <View className="flex-row justify-between gap-2 mt-2">
-            <TouchableOpacity className={clsx("flex-row items-center p-2 flex-1 justify-center h-[58]", 
+            <TouchableOpacity className={clsx("flex-row items-center p-2 flex-1 justify-center h-[58] rounded-lg", 
                 typeId === TransactionTypes.REVENUE ? "bg-accent-brand" : "bg-background-tertiary"
             ) 
             }
@@ -32,8 +32,8 @@ export const TransactionTypeSelector: React.FC<Props> = ({
 
             <TouchableOpacity 
             onPress={() => setTransactionType(TransactionTypes.EXPENSE)}
-            className={clsx("flex-row items-center p-2 flex-1 justify-center h-[58]", 
-                typeId === TransactionTypes.REVENUE ? "bg-accent-red" : "bg-background-tertiary"
+            className={clsx("flex-row items-center p-2 flex-1 justify-center h-[58] rounded-lg", 
+                typeId === TransactionTypes.EXPENSE ? "bg-accent-red" : "bg-background-tertiary"
             ) 
             }>
                 <MaterialIcons name="arrow-circle-down"
