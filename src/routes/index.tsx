@@ -6,8 +6,6 @@ import {  useAuthContext } from "@/context/auth.context"
 import { Loading } from "@/screens/Loading"
 import { SystemBars } from 'react-native-edge-to-edge'
 
-
-
 const NavigationRoutes = () => {
     const [loading, setLoading] = useState(true)
     const {token, user} = useAuthContext()

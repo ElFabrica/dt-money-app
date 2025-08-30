@@ -31,7 +31,8 @@
     "react-native-screens": "~4.11.1",
     "tailwindcss": "^3.4.17",
     "y": "^0.3.2",
-    "yup": "^1.7.0"
+    "yup": "^1.7.0",
+    "expo-checkbox": "~4.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

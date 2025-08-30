@@ -7,6 +7,7 @@ import { useBottomSheetContext } from "@/context/bottomsheet.context";
 import { TextInput } from "react-native-gesture-handler";
 import CurrencInput from "react-native-currency-input"
 import { TransactionTypeSelector } from "../SelectType";
+import { SelectCategoryModal } from "../SelectCategoryModal";
 
 export function NewTransaction() {
 
@@ -58,6 +59,9 @@ export function NewTransaction() {
                 minValue={0}
                 onChangeValue={(value) => setTransactionData("value", value ?? 0)}
                 />
+
+                <SelectCategoryModal/>
+                
                 <TransactionTypeSelector
                  typeId={transaction.typeId}
                  setTransactionType={(typeId) => setTransactionData("typeId", typeId) }

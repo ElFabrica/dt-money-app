@@ -23,7 +23,7 @@ export const Home = () => {
 
      useEffect(() => {
         (async ()  => {
-
+            handleFetchCategories()
         })()}, [])
     return (
         <SafeAreaView className="flex-1 bg-background-primary">
