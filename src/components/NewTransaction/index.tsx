@@ -60,7 +60,10 @@ export function NewTransaction() {
                 onChangeValue={(value) => setTransactionData("value", value ?? 0)}
                 />
 
-                <SelectCategoryModal/>
+                <SelectCategoryModal 
+                selectCaregory={transaction.categoryId}
+                onSelect={(categoryId)=> setTransactionData("categoryId", categoryId)}
+                />
                 
                 <TransactionTypeSelector
                  typeId={transaction.typeId}
