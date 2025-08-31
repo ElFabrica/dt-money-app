@@ -14,13 +14,16 @@
     "@react-native-async-storage/async-storage": "^2.1.2",
     "@react-navigation/native": "^7.1.17",
     "@react-navigation/stack": "^7.4.5",
+    "@types/qs": "^6.14.0",
     "axios": "^1.11.0",
     "babel-plugin-module-resolve": "^1.7.0",
     "clsx": "^2.1.1",
     "expo": "~53.0.20",
+    "expo-checkbox": "~4.1.4",
     "expo-status-bar": "~2.2.3",
     "nativewind": "^4.1.23",
     "prettier-plugin-tailwindcss": "^0.5.14",
+    "qs": "^6.14.0",
     "react": "19.0.0",
     "react-hook-form": "^7.62.0",
     "react-native": "0.79.5",
@@ -31,8 +34,7 @@
     "react-native-screens": "~4.11.1",
     "tailwindcss": "^3.4.17",
     "y": "^0.3.2",
-    "yup": "^1.7.0",
-    "expo-checkbox": "~4.1.4"
+    "yup": "^1.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
