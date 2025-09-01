@@ -12,7 +12,7 @@ export interface GetTransactionsParams{
 
 }
 
-export interface GetTransactionsResponse {
+export interface GetTransactionResponse {
     
   data: Transaction[],
   totalRows: number,

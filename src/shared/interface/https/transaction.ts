@@ -4,6 +4,9 @@ export interface Transaction{
       description: string,
       categoryId: number,
       typeId: number,
+      createdAt: string,
+      updatedAt: string,
+      deletedAt: string
       type: {
         id: number,
         name: string
@@ -12,7 +15,4 @@ export interface Transaction{
         id: number,
         name: string
       },
-      createdAt: string,
-      updatedAt: string,
-      deletedAt: string
 }

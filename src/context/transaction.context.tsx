@@ -16,7 +16,7 @@ export const TransantionContext = createContext({} as TransactionContextType)
 export const TransactionContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [categories, setCategories] = useState<TransactionCategory[]>([])
     const [transactions, setTransactions] = useState<Transaction[]>([])
-
+    
     const fetchCategories = async () => {
         const categoriesResponse = await transactionService.getTransactionCategories()
         setCategories(categoriesResponse)
@@ -26,12 +26,12 @@ export const TransactionContextProvider: FC<PropsWithChildren> = ({ children }) 
     }
     const fetchTransactions = useCallback(async()=>{
         const transactionResponse = await transactionService.getTransactions({
-            page:0,
+            page:1,
             perPage:10
-        });
-        console.log(transactionResponse)
+        }); 
         setTransactions(transactionResponse.data)
-    }, [])
+        console.log(transactionResponse.data)
+    }, [transactions])
 
     return (
         <TransantionContext.Provider
