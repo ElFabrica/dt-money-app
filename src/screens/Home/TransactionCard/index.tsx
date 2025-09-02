@@ -7,9 +7,11 @@ import { colors } from '@/shared/colors'
 import { TransactionTypes } from '@/shared/enums/transaction-types'
 import { ptBR } from "date-fns/locale"
 import clsx from 'clsx'
+import { RightAction } from './RightAction'
 
 interface Params {
     transaction: Transaction
+    
 }
 
 export const TransactionCard: React.FC<Params> = ({ transaction }) => {
@@ -23,6 +25,8 @@ export const TransactionCard: React.FC<Params> = ({ transaction }) => {
                 width: "90%",
                 marginBottom: 16
             }}
+            renderRightActions={() => <RightAction transactionId={transaction.id}/>}
+            overshootRight={false}
         >
             <View className='h-[140] bg-background-tertiary rounded-[6] p-6'>
                 <Text className='text-white text-base '>{transaction.description}</Text>

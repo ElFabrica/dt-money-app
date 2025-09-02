@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { FlatList, Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { ListHeader } from "./ListHeader"
-import { TransactionCard } from "@/components/TransactionCard"
+import { TransactionCard } from "@/screens/Home/TransactionCard"
 
 
 export const Home = () => {

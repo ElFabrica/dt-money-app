@@ -16,10 +16,14 @@ export async function createTransaction(transaction: CreateTransactionInterface)
 }
 
 export async function getTransactions(params: GetTransactionsParams): Promise<GetTransactionResponse> {
-    const { data } = await dtMoneyApi.get<GetTransactionResponse>("/transaction",{
+    const { data } = await dtMoneyApi.get<GetTransactionResponse>("/transaction", {
         params,
-        paramsSerializer: (p) =>qs.stringify(p, {arrayFormat:"repeat"}),
+        paramsSerializer: (p) => qs.stringify(p, { arrayFormat: "repeat" }),
     })
 
     return data
-} 
+}
+
+export const deletTransaction = async (id: number) => {
+    await dtMoneyApi.delete(`/transaction/${id}`)
+}
