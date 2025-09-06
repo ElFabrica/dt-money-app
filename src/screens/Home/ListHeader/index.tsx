@@ -9,7 +9,8 @@ export function ListHeader(){
     const { totalTransactions } = useTransactionContext()
 
 
-    return<>
+    return(
+    <>
         <AppHeader/>
         <View className="h-[150] w-[full]">
              <View className="h-[50] bg-background-primary">
@@ -20,9 +21,9 @@ export function ListHeader(){
                     <TransactionCard type={TransactionTypes.REVENUE} amount={totalTransactions.revenue}/>
                     <TransactionCard type={"total"} amount={totalTransactions.total}/>
 
-                    <Text>texte</Text>
                 </ScrollView>
              </View>
         </View>
     </>
+    )
 }
