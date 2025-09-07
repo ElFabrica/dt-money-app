@@ -30,7 +30,7 @@ export const Home = () => {
 
     useEffect(() => {
         (async () => {
-            await Promise.all([handleFetchCategories(), fetchTransactions()])
+            await Promise.all([handleFetchCategories(), fetchTransactions({page:1})])
         })()
     }, [])
     return (
@@ -42,6 +42,7 @@ export const Home = () => {
                 keyExtractor={({id}) => `transaction${id}`}
                 renderItem={({item}) => <TransactionCard transaction={item}/>}
                 ListHeaderComponent={<ListHeader />}
+                onEndReached={() => console.log("Olha o fim ai doido")}
                 refreshControl={
                     <RefreshControl refreshing={loading} onRefresh={refreshTransactions}/>
                 }
