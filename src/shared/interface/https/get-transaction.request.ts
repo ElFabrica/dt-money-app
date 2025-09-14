@@ -4,7 +4,8 @@ import { Transaction } from "./transaction";
 export interface Pagination{
   page: number,
   perPage: number,
-  totalRows: number
+  totalRows: number,
+  totalPages: number
 }
 
 export interface GetTransactionsParams{
