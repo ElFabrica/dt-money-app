@@ -29,3 +29,10 @@ export interface GetTransactionResponse {
   totalTransactions: TotalTransactions
 
 }
+
+export interface Filters{
+  to?: Date;
+  from?: Date;
+  typeId?: number,
+  categoryIds: Record<number, boolean>;
+}
