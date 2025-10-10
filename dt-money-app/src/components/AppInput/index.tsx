@@ -10,7 +10,7 @@ import { ErrorMessage } from "../ErrorComponent"
 interface AppInputParams<T extends FieldValues> extends TextInputProps {
     control: Control<T>,
     name: Path<T>
-    leftIconName?: keyof typeof MaterialIcons.glyphMap
+    leftIconName?: keyof typeof MaterialIcons.glyphMap //tipagem do icon
     label?: string
 }
 
@@ -24,9 +24,12 @@ export const AppInput = <T extends FieldValues>({
 }: AppInputParams<T>) => {
     return (
         <Controller
-            control={control} name={name} render={({ field: { onChange, value }, fieldState: { 
-            error } }) => {
-                    console.log(error)
+            control={control}
+            name={name}
+            render={({
+                field: { onChange, value },
+                fieldState: { error } }) => {
+                console.log(error)
                 const [isFocused, setIsFocused] = useState(false)
                 const inputRef = useRef<TextInput>(null)
                 const [showText, setShowText] = useState(secureTextEntry)
@@ -43,7 +46,9 @@ export const AppInput = <T extends FieldValues>({
                                 {label}
                             </Text>
                         }
-                        <TouchableOpacity className="flex-row items-center justify-between border-b-[1px] border-gray-600 px-3 py-2 h-16 ">
+                        <TouchableOpacity className="flex-row items-center 
+                        justify-between border-b-[1px] border-gray-600 px-3 py-2 h-16 "
+                        >
                             {
                                 leftIconName &&
                                 <MaterialIcons
@@ -65,16 +70,16 @@ export const AppInput = <T extends FieldValues>({
                             />
                             {
                                 secureTextEntry && <TouchableOpacity
-                                onPress={ ()=> setShowText((value) => !value) }>
-                                     
-                                    <MaterialIcons name={showText ? "visibility" : "visibility-off"} color={colors.gray[600]} size={24}/>
+                                    onPress={() => setShowText((value) => !value)}>
+
+                                    <MaterialIcons name={showText ? "visibility" : "visibility-off"} color={colors.gray[600]} size={24} />
                                 </TouchableOpacity >
                             }
                         </TouchableOpacity >
 
-                            {error && (
-                                <ErrorMessage> {error.message} </ErrorMessage>
-                            )}
+                        {error && (
+                            <ErrorMessage> {error.message} </ErrorMessage>
+                        )}
 
                     </View>
                 )

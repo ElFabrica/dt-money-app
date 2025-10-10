@@ -7,7 +7,6 @@ import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { schema } from "./schema"
 import { useAuthContext } from "@/context/auth.context"
-import { AxiosError } from "axios"
 import { useErrorHandle } from "@/shared/hooks/useErrorHandle"
 import { colors } from "@/shared/colors"
 
@@ -19,7 +18,8 @@ export interface FormRegisterParams {
 }
 
 export const RegisterForm = () => {
-    const navigation = useNavigation<NavigationProp<PublicStackParamsList>>()
+    const navigation = useNavigation<NavigationProp<PublicStackParamsList>>() // tipagem das rotas, e tipando a tipagem com a tipagem das minhas rotas 
+
     const { handleRegister } = useAuthContext()
     const { handleError } = useErrorHandle()
 
@@ -27,23 +27,23 @@ export const RegisterForm = () => {
         try {
             await handleRegister(userData)
         } catch (error) {
-               handleError(error, "falha ao cadastrar usuário")
+            handleError(error, "falha ao cadastrar usuário")
         }
     }
 
 
     const {
-        control,
-        handleSubmit,
-        formState: { isSubmitting }
-    } = useForm<FormRegisterParams>({
+        control, //Verifica o valor do input é o mesmo que o schema do yup requisita
+        handleSubmit, //inicializa a validação do yup
+        formState: { isSubmitting } //altera o estado de loading
+    } = useForm<FormRegisterParams>({ //seta os valores como vazios para não conflitar no momento em que receber um valor diferente de string
         defaultValues: {
             confirmPasword: "",
             email: "",
             name: "",
             password: ""
         },
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema) //ligação entre o hook-form e o arquivo de schema
     })
     return <>
         <AppInput
@@ -83,10 +83,10 @@ export const RegisterForm = () => {
         <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
             <AppButton onPress={handleSubmit(onSubmit)} iconName="arrow-forward">
                 {
-                isSubmitting? 
-                <ActivityIndicator color={colors.white}/> : "Cadastrar"
+                    isSubmitting ?
+                        <ActivityIndicator color={colors.white} /> : "Cadastrar"
                 }
-                </AppButton>
+            </AppButton>
             <View>
                 <Text className="mb-6 text-gray-300 text-base">Já possui uma conta?</Text>
                 <AppButton onPress={() => { navigation.navigate("Login") }} iconName="arrow-forward" mode="outline">Acessar</AppButton>

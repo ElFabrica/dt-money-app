@@ -23,6 +23,7 @@ export const Home = () => {
 
     const { handleError } = useErrorHandle()
 
+    //Buscar as categorias 
     const handleFetchCategories = async () => {
         try {
             handleLoadings({
@@ -41,6 +42,7 @@ export const Home = () => {
         }
     }
 
+    //Buscae as transações da primeira página
     const handleFetchInitialTransactions = async () => {
         try {
             handleLoadings({
@@ -58,6 +60,7 @@ export const Home = () => {
         }
     }
 
+    //Busca mais transações ao chegar no fim do flatlist
     const handleLoadMoreTransactions = async () => {
         try {
             handleLoadings({
@@ -76,7 +79,7 @@ export const Home = () => {
         }
     }
 
-
+    //refresh das transições (reload da página)
     const handleRefreshTransactions = async () => {
         try {
             handleLoadings({

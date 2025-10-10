@@ -9,7 +9,7 @@ export type PublicStackParamsList = {
 export const PublicRoutes = () => {
 
 
-    const PublicStack = createStackNavigator<PublicStackParamsList>()
+    const PublicStack = createStackNavigator<PublicStackParamsList>() //Instancia tipando as rotas disponíveis
     return (
         <PublicStack.Navigator
             screenOptions={{

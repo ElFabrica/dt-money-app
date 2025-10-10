@@ -3,10 +3,11 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { FC, PropsWithChildren } from "react"
 import clsx from "clsx"
 import { colors } from "@/shared/colors"
+
 type AppButtomMode = "fill" | "outline"
 
 interface AppButtonParams extends TouchableOpacityProps {
-    mode?: AppButtomMode
+    mode?: AppButtomMode //tipo estilo que o botão terá 
     iconName?: keyof typeof MaterialIcons.glyphMap
     widthFull?: Boolean
 }
@@ -36,10 +37,15 @@ export const AppButton: FC<PropsWithChildren<AppButtonParams>> = ({
                 "text-white": isFill,
                 "text-accent-brand": !isFill
             })}>
-                {children}
+                {children} {/*Não sei em que caso estou usando*/}
             </Text>
             {
-                iconName && <MaterialIcons name={iconName} size={24} color={isFill ? colors.white : colors["accent-brand"]} />
+                iconName &&
+                <MaterialIcons
+                    name={iconName}
+                    size={24}
+                    color={isFill ? colors.white : colors["accent-brand"]}
+                />
             }
         </TouchableOpacity>
     )

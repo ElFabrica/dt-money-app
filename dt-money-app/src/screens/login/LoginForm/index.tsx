@@ -10,9 +10,6 @@ import { NavigationProp, useNavigation } from "@react-navigation/native"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { Schema } from '@/screens/login/LoginForm/schema'
 import { useAuthContext } from "@/context/auth.context"
-import { AxiosError } from "axios"
-import { AppError } from "@/shared/helpers/AppError"
-import { useSnacbarContext } from "@/context/snackbar.context"
 import { useErrorHandle } from "@/shared/hooks/useErrorHandle"
 import { colors } from "@/shared/colors"
 
@@ -70,8 +67,8 @@ export const LoginForm = () => {
             <View className="flex-1 justify-between mt-8 mb-6 min-h-[250px]">
                 <AppButton onPress={handleSubmit(onSubmint)} iconName="arrow-forward">
                     {
-                    isSubmitting ?
-                    <ActivityIndicator color={colors.white} /> : "Login"
+                        isSubmitting ?
+                            <ActivityIndicator color={colors.white} /> : "Login"
                     }
                 </AppButton>
                 <View>

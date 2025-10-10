@@ -11,47 +11,52 @@ type AuthContextType = {
     token: string | null
     handleAuthenticate: (params: FormLoginParams) => Promise<void>
     handleRegister: (params: FormRegisterParams) => Promise<void>
-    handleLogout: () => void
-    restoreUserSession: () => Promise<String|null>
+    handleLogout: () => Promise<void>
+    restoreUserSession: () => Promise<String | null>
 }
 
-export const AuthContext = createContext<AuthContextType>(
-    {} as AuthContextType)
+export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
+//Login and authenticate
 export function AuthContextProvider({ children }: { children: React.ReactNode }) {
     const [user, setUser] = useState<IUser | null>(null)
     const [token, setToken] = useState<string | null>(null)
 
-    const handleAuthenticate = async ( userData : FormLoginParams) => {
+    const handleAuthenticate = async (userData: FormLoginParams) => {
         const { token, user } = await authService.authenticate(userData)
-        await AsyncStorage.setItem("dt-money-user", JSON.stringify({user, token}))
+        await AsyncStorage.setItem("dt-money-user", JSON.stringify({ user, token })) //Storge direto
         setUser(user)
         setToken(token)
-        console.log(token, user)
     }
 
+
+    //Sigin  
     const handleRegister = async (formData: FormRegisterParams) => {
-        const { token, user} = await authService.registerUser(formData)
-        await AsyncStorage.setItem("dt-money-user", JSON.stringify({user, token}))
-        
+        const { token, user } = await authService.registerUser(formData)
+        await AsyncStorage.setItem("dt-money-user", JSON.stringify({ user, token }))
+
         setUser(user)
         setToken(token)
     }
+
+    //Logout
     const handleLogout = async () => {
-         await AsyncStorage.clear()
-         setToken(null)
-         setUser(null)
+        await AsyncStorage.clear()
+        setToken(null)
+        setUser(null)
     }
+
+    //Restore authenticate
     async function restoreUserSession() {
         const userData = await AsyncStorage.getItem("dt-money-user")
-    
-    if(userData) {
-        const {token, user} = JSON.parse(userData) as IAuthenticateRespose
-        setUser(user)
-        setToken(token)
+
+        if (userData) {
+            const { token, user } = JSON.parse(userData) as IAuthenticateRespose
+            setUser(user)
+            setToken(token)
+        }
+        return userData
     }
-    return userData 
-}
 
     return (
         <AuthContext.Provider
